@@ -166,5 +166,9 @@ h2 {
     cursor: pointer;
 }
 
+.validation {
+    color: red;
+}
+
 
 
