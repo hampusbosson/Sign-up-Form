@@ -1,3 +1,4 @@
+//const declarations
 const password = document.getElementById('password');
 const confPassword = document.getElementById('conf-password');
 const confPasswordText = document.getElementById('conf-password-text');
@@ -12,13 +13,11 @@ const req3 = document.getElementById('required-3');
 const req4 = document.getElementById('required-4');
 const req5 = document.getElementById('required-5');
 
-
-
+//eventlisteners
 confPassword.addEventListener('input', () => passwordMatch());
-
 submitbutton.addEventListener('click', () => requiredField());
 
-
+//function to check if passwords match
 function passwordMatch() {
     if (password.value !== confPassword.value) {
         confPasswordText.textContent = 'Passwords did not match!';
@@ -27,30 +26,18 @@ function passwordMatch() {
     }
 }
 
+//function to not allow empty fields
 function requiredField() {
-    if (name.value == '') {
-        req1.textContent = 'This field is required *';
-    } else {
-        req1.textContent = '';
-    } if (lastName.value == '') {
-        req2.textContent = 'This field is required *';
-    } else {
-        req2.textContent = '';
-    } if (email.value == '') {
-        req3.textContent = 'This field is required *';
-    } else {
-        req3.textContent = '';
-    } if (tel.value == '') {
-        req4.textContent = 'This field is required *';
-    } else {
-        req4.textContent = '';
-    } if (password.value == '') {
-        req5.textContent = 'This field is required *';
-    } else {
-        req5.textContent = '';
-    } if (confPassword.value == '') {
-        confPasswordText.textContent = 'This field is required *';
-    } else {
-        confPasswordText.textContent = '';
-    } 
+    const fields = [
+        { input: name, requiredText: req1 },
+        { input: lastName, requiredText: req2 },
+        { input: email, requiredText: req3 }, 
+        { input: tel, requiredText: req4 },
+        { input: password, requiredText: req5 },
+        { input: confPassword, requiredText: confPasswordText } 
+    ];
+
+    fields.forEach(field => {
+        field.requiredText.textContent = field.input.value === '' ? 'This field is required *' : '';
+    });
 }
